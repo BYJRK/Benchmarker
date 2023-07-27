@@ -1,3 +1,3 @@
 ﻿using Benchmarker.Runners;
 
-BenchmarkRunner.Run<StringBuilderFormat>();
+BenchmarkRunner.Run<ListIteration>();
