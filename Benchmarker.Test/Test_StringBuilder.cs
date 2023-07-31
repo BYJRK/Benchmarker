@@ -10,21 +10,23 @@ namespace Benchmarker.Test
         [Fact]
         public void Test_StringBuilderInit()
         {
-            var o1 = _init.AppendWithoutInit();
-            var o2 = _init.AppendWithInit();
-            var o3 = _init.AppendJoin();
-            Assert.Equal(o1, o2);
-            Assert.Equal(o1, o3);
+            var appendWithoutInit = _init.AppendWithoutInit();
+            var appendWithInit = _init.AppendWithInit();
+            var appendJoin = _init.AppendJoin();
+            Assert.Equal(appendWithoutInit, appendWithInit);
+            Assert.Equal(appendWithoutInit, appendJoin);
         }
 
         [Fact]
         public void Test_StringBuilderFormat()
         {
-            string o1 = _format.AppendWithoutFormat();
-            string o2 = _format.AppendFormat();
-            string o3 = _format.AppendMultiple();
-            Assert.Equal(o1, o2);
-            Assert.Equal(o1, o3);
+            var stringFormatResult = _format.StringFormat();
+            var appendFormatResult = _format.AppendFormat();
+            var appendMultipleResult = _format.AppendMultiple();
+            var stringInterpolationResult = _format.StringInterpolation();
+            Assert.True(stringInterpolationResult == stringFormatResult);
+            Assert.True(stringInterpolationResult == appendFormatResult);
+            Assert.True(stringInterpolationResult == appendMultipleResult);
         }
     }
 }

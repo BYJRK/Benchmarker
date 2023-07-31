@@ -49,7 +49,15 @@ public class StringBuilderFormat
     private float arg3 = 30f;
 
     [Benchmark(Baseline = true)]
-    public string AppendWithoutFormat()
+    public string StringFormat()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append(string.Format("{0}, {1}, {2}", arg1, arg2, arg3));
+        return sb.ToString();
+    }
+
+    [Benchmark]
+    public string StringInterpolation()
     {
         StringBuilder sb = new StringBuilder();
         sb.Append($"{arg1}, {arg2}, {arg3}");
