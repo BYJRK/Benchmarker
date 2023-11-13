@@ -116,3 +116,15 @@
 |          PlainLoop |       100 |  36.678 ns | 0.3357 ns | 0.2803 ns |
 | TryCatchInEachLoop |      1000 | 774.706 ns | 9.2063 ns | 8.1611 ns |
 |          PlainLoop |      1000 | 311.519 ns | 2.7005 ns | 2.3939 ns |
+
+### 计时器的效率
+
+|                   Method |     Mean |    Error |   StdDev | Ratio | RatioSD | Allocated | Alloc Ratio |
+|------------------------- |---------:|---------:|---------:|------:|--------:|----------:|------------:|
+|             DateTime_Now | 63.40 ns | 1.387 ns | 4.024 ns |  1.00 |    0.00 |         - |          NA |
+|       Stopwatch_StartNew | 36.67 ns | 1.096 ns | 3.038 ns |  0.58 |    0.06 |      40 B |          NA |
+| Stopwatch_GetElapsedTime | 28.96 ns | 0.589 ns | 1.077 ns |  0.46 |    0.04 |         - |          NA |
+
+- 如果使用 `DateTime.Now` 的差来获取耗时，虽然没有内存开销，但效率较低
+- 如果使用经典的 `Stopwatch.StartNew()` 方法，虽然效率较高，但有内存开销（40 B）
+- 使用 `Stopwatch.GetTimestamp()` 以及 `Stopwatch.GetElapsedTime(long)` 两个方法，效率最高，且没有内存开销
